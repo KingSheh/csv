@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransactionGPT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.min.css">
+    <!-- Include config.js first to define API_URL -->
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.2.12/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>TransactionGPT</h1>
+            </div>
+            <div class="new-chat" id="new-chat-btn">
+                <i class="fas fa-plus"></i> New Analysis
+            </div>
+            <div class="session-list" id="session-list">
+                <!-- Sessions will be listed here -->
+            </div>
+        </aside>
+
+        <main class="chat-container">
+            <div class="initial-view" id="initial-view">
+                <div class="api-key-container">
+                    <h3>OpenAI API Key</h3>
+                    <p>Enter your OpenAI API key to analyze transactions</p>
+                    <form id="api-key-form" class="api-key-form">
+                        <div class="input-container">
+                            <input type="password" id="api-key-input" placeholder="sk-..." autocomplete="off">
+                            <button type="submit" id="api-key-submit">Save Key</button>
+                        </div>
+                        <div class="api-key-info">
+                            Your API key is used only for analysis and not stored permanently.
+                        </div>
+                    </form>
+                </div>
+                <div class="welcome-container">
+                    <h1>TransactionGPT</h1>
+                    <p>Upload your bank transaction CSV to analyze your finances</p>
+                    <div class="upload-container">
+                        <label for="file-upload" class="upload-button">
+                            <i class="fas fa-upload"></i> Upload CSV File
+                        </label>
+                        <input type="file" id="file-upload" accept=".csv" style="display: none;">
+                        <div id="upload-feedback" class="upload-feedback"></div>
+                    </div>
+                    <div class="csv-format-info">
+                        <h3>Supported CSV Formats:</h3>
+                        <ul>
+                            <li>Simple 5-column format (Date, Description, Debit, Credit, Balance)</li>
+                            <li>Desjardins bank format</li>
+                            <li>Other formats may be supported - upload and try!</li>
+                        </ul>
+                    </div>
+                    <div class="examples">
+                        <h3>Example queries you can ask:</h3>
+                        <div class="example-grid" id="example-queries">
+                            <!-- Example queries will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-view" id="chat-view" style="display: none;">
+                <div class="session-info" id="session-info">
+                    <!-- Session information will appear here -->
+                </div>
+                
+                <!-- Transaction table will be inserted here dynamically -->
+                
+                <div class="messages" id="messages">
+                    <!-- Messages will appear here -->
+                </div>
+                
+                <div class="input-area">
+                    <form id="query-form">
+                        <div class="input-container">
+                            <textarea 
+                                id="query-input" 
+                                placeholder="Ask something about your transactions... (Press Enter to send)" 
+                                rows="1"
+                                autofocus
+                            ></textarea>
+                            <button type="submit" id="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="disclaimer">
+                        TransactionGPT can make mistakes. Consider checking important information.
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Include JavaScript files in the right order -->
+    <script src="transactions.js"></script>
+    <script src="upload.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
