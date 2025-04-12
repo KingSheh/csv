@@ -96,10 +96,14 @@ app = FastAPI(
 # Configure CORS for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this to specific origins in production
+    allow_origins=[
+        "https://csv-frontend-wd3a.onrender.com",  # Your frontend URL
+        "http://localhost:3000",  # For local development
+        "http://127.0.0.1:3000",  # For local development
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization", "X-API-Key"],
 )
 
 # Directory for storing uploaded files and results

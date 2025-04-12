@@ -2,7 +2,7 @@
 // Define API_URL as a global variable
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:8000' 
-  : 'https://your-backend-url.onrender.com'; // Replace with your actual backend URL after deployment
+  : 'https://csv-backend-qtno.onrender.com'; // Your actual backend URL
 
 // Log the API URL for debugging
 console.log("API URL configured as:", API_URL);
